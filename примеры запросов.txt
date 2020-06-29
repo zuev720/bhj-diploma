@@ -1,0 +1,27 @@
+// авторизация
+createRequest({
+  data: {
+    email: "demo@demo",
+    password: "demo"
+  },
+  url: '/user/login',
+  method: 'POST',
+  responseType: 'json',
+  callback: ( err, response ) => console.log("err: ", err, " response: ", response)
+})
+
+//Получение текущего пользователя
+createRequest({
+  url: '/user/current',
+  method: 'GET',
+  responseType: 'json',
+  callback: ( err, response ) => console.log("err: ", err, " response: ", response)
+})
+
+//логаут
+createRequest({
+  url: '/user/logout',
+  method: 'POST',
+  responseType: 'json',
+  callback: ( err, response ) => console.log("err: ", err, " response: ", response)
+})

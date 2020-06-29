@@ -31,19 +31,19 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-    this.element.addEventListener( 'click', e => {
+    this.element.addEventListener('click', e => {
       e.preventDefault();
-      const createAccount = e.target.closest( '.create-account' );
+      const createAccount = e.target.closest('.create-account');
 
       if ( createAccount ) {
-        const modal = App.getModal( 'createAccount' );
+        const modal = App.getModal('createAccount');
         return modal.open();
       }
 
-      const selectedAccount = e.target.closest( '.account' );
+      const selectedAccount = e.target.closest('.account');
 
-      if ( selectedAccount ) {
-        this.onSelectAccount( selectedAccount );
+      if (selectedAccount){
+        this.onSelectAccount(selectedAccount);
       }
     });
   }
@@ -59,18 +59,18 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-    if ( !User.current()) {
+    if (!User.current()) {
       return;
     }
-    Account.list(User.current(), ( err, response ) => {
-      if ( err ) {
+    Account.list(User.current(), (err, response) => {
+      if (err){
         return;
       }
-      if ( !response.data ) {
+      if (!response.data){
         return;
       }
       this.clear();
-      this.renderItem( response.data );
+      this.renderItem(response.data);
     });
   }
 
@@ -108,7 +108,7 @@ class AccountsWidget {
 
     this.currentAccountId = id;
 
-    App.showPage( 'transactions', {
+    App.showPage('transactions', {
       account_id: id
     });
   }
@@ -118,7 +118,7 @@ class AccountsWidget {
    * отображения в боковой колонке.
    * item - объект с данными о счёте
    * */
-  getAccountHTML( item ) {
+  getAccountHTML(item){
     return `
       <li class="account" data-id="${ item.id }">
           <a href="#">
@@ -134,8 +134,8 @@ class AccountsWidget {
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItem( data ) {
-    data.forEach( item => {
+  renderItem(data){
+    data.forEach(item => {
       const {name, id} = item,
           sum = item.sum.toLocaleString('en'),
           html = this.getAccountHTML({

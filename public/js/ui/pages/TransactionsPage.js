@@ -11,8 +11,8 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor( element ) {
-    if ( !element ) {
-      throw new Error( 'Элемент не существует' );
+    if (!element) {
+      throw new Error('Элемент не существует');
     }
     this.element = element;
 
@@ -23,7 +23,7 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render( this.lastOptions );
+    this.render(this.lastOptions);
   }
 
   /**
@@ -33,15 +33,14 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    this.element.addEventListener( 'click', e => {
-      const transactionButton = e.target.closest( '.transaction__remove' );
-      if ( transactionButton ) {
+    this.element.addEventListener('click', e => {
+      const transactionButton = e.target.closest('.transaction__remove');
+      if (transactionButton){
         const { id } = transactionButton.dataset;
-
-        this.removeTransaction( id );
+        this.removeTransaction(id);
       }
-      const accountButton = e.target.closest( '.remove-account' );
-      if ( accountButton ) {
+      const accountButton = e.target.closest('.remove-account');
+      if (accountButton){
         this.removeAccount()
       }
     });
@@ -56,15 +55,15 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-    if ( !this.lastOptions ) {
+    if (!this.lastOptions){
       return;
     }
-    if (!confirm( 'Вы действительно хотите удалить счёт?' )) {
+    if (!confirm('Вы действительно хотите удалить счёт?')){
       return;
     }
     const id = this.lastOptions.account_id;
     this.clear();
-    Account.remove( id, {}, () => App.update());
+    Account.remove({id}, () => App.update());
   }
 
   /**
@@ -76,7 +75,7 @@ class TransactionsPage {
     if (!confirm( 'Вы действительно хотите удалить эту транзакцию?' )) {
       return;
     }
-    Transaction.remove( id, {}, () => App.update());
+    Transaction.remove({id}, () => App.update());
   }
 
   /**
@@ -85,25 +84,25 @@ class TransactionsPage {
    * Получает список Transaction.list и полученные данные передаёт
    * в TransactionsPage.renderTransactions()
    * */
-  render( options ) {
-    if ( !options ) {
+  render(options){
+    if (!options){
       return;
     }
     this.lastOptions = options;
-    Account.get( options.account_id, {}, ( err, response ) => {
-      this.renderTitle( response.data.name );
+    Account.get(options.account_id, (err, response) => {
+      this.renderTitle(response.data.name);
     });
-    Transaction.list( options, ( err, response ) => {
-      if ( err ) {
+    Transaction.list(options, (err, response) => {
+      if (err){
         return;
       }
-      if ( !response ) {
+      if (!response){
         return;
       }
-      if ( !response.data ) {
+      if (!response.data){
         return;
       }
-      this.renderTransactions( response.data );
+      this.renderTransactions(response.data);
     });
   }
 
@@ -114,16 +113,15 @@ class TransactionsPage {
    * */
   clear() {
     this.renderTransactions([]);
-    this.renderTitle( 'Название счёта' );
+    this.renderTitle('Название счёта');
     this.lastOptions = null;
   }
 
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
-  renderTitle( name ) {
-    const title = this.element.querySelector( '.content-title' );
-
+  renderTitle(name){
+    const title = this.element.querySelector('.content-title');
     title.textContent = name;
   }
 
@@ -131,28 +129,28 @@ class TransactionsPage {
    * Форматирует дату в формате 2019-03-10 03:20:41 (строка)
    * в формат «10 марта 2019 г. в 03:20»
    * */
-  formatDate( date ) {
-    const d = new Date( date.replace( ' ', 'T' )),
-        day = d.getDate(),
-        months = [
-          'января',
-          'февраля',
-          'марта',
-          'апреля',
-          'мая',
-          'июня',
-          'июля',
-          'августа',
-          'сентября',
-          'октября',
-          'ноября',
-          'декабря'
-        ],
-        month = months[ d.getMonth() ],
-        year = d.getFullYear(),
-        hours = d.getHours(),
-        minutes = d.getMinutes(),
-        formatTime = x => x < 10 ? '0' + x : x;
+  formatDate(date){
+    const d = new Date(date.replace(' ', 'T')),
+      day = d.getDate(),
+      months = [
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря'
+      ],
+      month = months[ d.getMonth() ],
+      year = d.getFullYear(),
+      hours = d.getHours(),
+      minutes = d.getMinutes(),
+      formatTime = x => x < 10 ? '0' + x : x;
 
     return `${day} ${month} ${year} г. в ${formatTime(hours)}:${formatTime(minutes)}`;
   }
@@ -161,10 +159,10 @@ class TransactionsPage {
    * Формирует HTML-код транзакции (дохода или расхода).
    * item - объект с информацией о транзакции
    * */
-  getTransactionHTML( item ) {
+  getTransactionHTML(item){
     const { type, name, id } = item,
-        date = this.formatDate( item.created_at ),
-        sum = item.sum.toLocaleString( 'en' );
+      date = this.formatDate(item.created_at),
+      sum = item.sum.toLocaleString('en');
 
     return `
       <div class="transaction transaction_${type.toLowerCase()} row">
@@ -195,10 +193,10 @@ class TransactionsPage {
    * Отрисовывает список транзакций на странице
    * используя getTransactionHTML
    * */
-  renderTransactions( data ) {
-    const container = document.querySelector( '.content' ),
+  renderTransactions(data){
+    const container = document.querySelector('.content'),
         itemsHTML = data.reverse()
-            .map( this.getTransactionHTML.bind( this ))
+            .map( this.getTransactionHTML.bind(this))
             .join( '' );
 
     container.innerHTML = `<div class="transactions-content">${itemsHTML}</div>`

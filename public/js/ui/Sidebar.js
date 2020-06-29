@@ -18,11 +18,11 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-    const toggle = document.querySelector( '.sidebar-toggle' ),
-        sidebar = document.querySelector( '.sidebar-mini' );
-    toggle.addEventListener( 'click', () => {
-      sidebar.classList.toggle( 'sidebar-open' );
-      sidebar.classList.toggle( 'sidebar-collapse' );
+    const toggle = document.querySelector('.sidebar-toggle'),
+        sidebar = document.querySelector('.sidebar-mini');
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('sidebar-open');
+      sidebar.classList.toggle('sidebar-collapse');
     });
   }
 
@@ -34,18 +34,18 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-    const loginLink = document.querySelector( '.menu-item_login a' ),
-        registerLink = document.querySelector( '.menu-item_register a' ),
-        logoutLink = document.querySelector( '.menu-item_logout a' ),
+    const loginLink = document.querySelector('.menu-item_login a'),
+        registerLink = document.querySelector('.menu-item_register a'),
+        logoutLink = document.querySelector('.menu-item_logout a'),
 
-        loginModal = App.getModal( 'login' ),
-        registerModal = App.getModal( 'register' );
+        loginModal = App.getModal('login'),
+        registerModal = App.getModal('register');
 
-    loginLink.addEventListener( 'click', () => loginModal.open());
-    registerLink.addEventListener( 'click', () => registerModal.open());
-    logoutLink.addEventListener( 'click', () =>
-        User.logout({}, ( err, response ) => {
-          if ( response && response.success ) {
+    loginLink.addEventListener('click', () => loginModal.open());
+    registerLink.addEventListener('click', () => registerModal.open());
+    logoutLink.addEventListener('click', () =>
+        User.logout({}, (err, response) => {
+          if (response && response.success){
             App.setState( 'init' );
           }
         })

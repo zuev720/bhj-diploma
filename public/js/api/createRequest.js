@@ -6,9 +6,6 @@ const createRequest = (options = {}) => {
     const f = function () {},
         {
             method = 'GET',
-            headers = {},
-            success = f,
-            error = f,
             callback = f,
             responseType,
             async = true,
@@ -23,20 +20,18 @@ const createRequest = (options = {}) => {
         xhr.responseType = responseType;
     }
     xhr.onload = function() {
-        success.call( this, xhr.response );
-        callback.call( this, null, xhr.response );
+        callback(null, xhr.response);
     };
     xhr.onerror = function() {
         const err = new Error( 'Request Error' );
-        error.call( this, err );
-        callback.call( this, err );
+        callback(err, null);
     };
 
     xhr.withCredentials = true;
 
-    if ( method === 'GET' ) {
-        const urlParams = Object.entries( data )
-            .map(([ key, value ]) => `${key}=${value}` )
+    if (method === 'GET') {
+        const urlParams = Object.entries(data)
+            .map(([ key, value ]) => `${key}=${value}`)
             .join( '&' );
         if ( urlParams ) {
             url += '?' + urlParams;
@@ -44,20 +39,16 @@ const createRequest = (options = {}) => {
     }
     else {
         requestData = Object.entries( data )
-            .reduce(( target, [ key, value ]) => {
-                target.append( key, value );
+            .reduce((target, [ key, value ]) => {
+                target.append(key, value);
                 return target;
             }, new FormData );
     }
     try {
-        xhr.open( method, url, async );
-        xhr.send( requestData );
+        xhr.open(method, url, async);
+        xhr.send(requestData);
     }
-    catch ( err ) {
-        error.call( this, err );
-        callback.call( this, err );
-        return xhr;
+    catch (err) {
+        callback(err);
     }
-
-    return xhr;
 };

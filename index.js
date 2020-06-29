@@ -3,6 +3,8 @@ const { PORT, PUBLIC_PATH, INDEX_FILE } = process.env;
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync', {
@@ -15,6 +17,12 @@ if(!db.get('users').value())
 
 const app = express();
 app.use(express.static(`${__dirname}/${PUBLIC_PATH}`));
+
+app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['authorized', 'login'],
+}));
 
 const api = require('./routes');
 app.use('/', api);

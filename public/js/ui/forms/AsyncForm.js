@@ -12,9 +12,9 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor( element ) {
-    if ( !element ) {
-      throw new Error( 'Элемент не существует' );
+  constructor(element) {
+    if (!element){
+      throw new Error('Элемент не существует');
     }
     this.element = element;
 
@@ -26,7 +26,7 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-    this.element.addEventListener( 'submit', e => {
+    this.element.addEventListener('submit', e => {
       e.preventDefault();
       this.submit();
     });
@@ -40,14 +40,14 @@ class AsyncForm {
    * }
    * */
   getData() {
-    return [... ( new FormData( this.element )).entries()]
-        .reduce(( target, [ key, value ]) => {
-          target[ key ] = value;
-          return target;
-        }, {});
+    return [... (new FormData(this.element)).entries()]
+      .reduce((target, [key, value]) => {
+        target[key] = value;
+        return target;
+      }, {});
   }
 
-  onSubmit( options ) {
+  onSubmit(options){
 
   }
 
@@ -57,9 +57,6 @@ class AsyncForm {
    * */
   submit() {
     const data = this.getData();
-
-    this.onSubmit({
-      data
-    });
+    this.onSubmit(data);
   }
 }
