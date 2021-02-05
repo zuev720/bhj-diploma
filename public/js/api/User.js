@@ -64,7 +64,16 @@ class User {
    * User.setCurrent.
    * */
   static register( data, callback) {
-
+    createRequest({
+      url: this.URL + '/register',
+      method: 'POST',
+      responseType: 'json',
+      data,
+      callback: (err, response) => {
+        console.log(response);
+        callback(err, response);
+      }
+    });
   }
 
   /**

@@ -13,9 +13,9 @@ class App {
     this.content = document.querySelector(".content-wrapper");
 
     this.initPages();
-    this.initForms();
+    // this.initForms();
     this.initModals();
-    this.initWidgets();
+    // this.initWidgets();
 
     Sidebar.init();
 
