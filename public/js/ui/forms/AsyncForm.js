@@ -12,15 +12,21 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-  constructor() {
-    this.element = [... document.querySelectorAll('.modal')]
-        .find(modal => modal.style.display === 'block')
-        .querySelector('.form');
-    if (!this.element) {
-      throw new Error('Ошибка, нет активных форм!');
-    } else {
-      this.registerEvents();
-    }
+  constructor(element) {
+      if (!element) {
+          throw new Error('Ошибка, формы не существует');
+      } else {
+          this.element = element;
+          this.registerEvents();
+      }
+    // this.element = [... document.querySelectorAll('.modal')]
+    //     .find(modal => modal.style.display === 'block')
+    //     .querySelector('.form');
+    // if (!this.element) {
+    //   throw new Error('Ошибка, нет активных форм!');
+    // } else {
+    //   this.registerEvents();
+    // }
   }
 
   /**

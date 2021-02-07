@@ -21,14 +21,13 @@ const createRequest = (options = {}) => {
         }
     } else if (options.method === 'POST') {
         for (const [key, value] of Object.entries(options.data)) {
-            formData.append('key', 'value');
+            formData.append(key, value);
         }
     }
-
-    xhr.open('options.method', `options.url`);
+    xhr.open(options.method, options.url);
     xhr.send(formData);
 
     xhr.addEventListener('readystatechange', (e) => {
-        console.log(e);
+        // console.log(e);
     });
 };

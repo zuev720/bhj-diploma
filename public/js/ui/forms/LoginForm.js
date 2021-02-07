@@ -10,6 +10,8 @@ class LoginForm extends AsyncForm {
    * закрывает окно, в котором находится форма
    * */
   onSubmit(data) {
+    User.login(data, (err, response) => {
 
+    });
   }
 }

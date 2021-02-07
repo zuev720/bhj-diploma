@@ -11,6 +11,8 @@ class RegisterForm extends AsyncForm {
    * */
 
   onSubmit(data) {
-    User.register( data, (err, response));
+    User.register( data, (err, response) => {
+
+    });
   }
 }

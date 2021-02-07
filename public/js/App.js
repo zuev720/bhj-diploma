@@ -13,9 +13,9 @@ class App {
     this.content = document.querySelector(".content-wrapper");
 
     this.initPages();
-    // this.initForms();
+    this.initForms();
     this.initModals();
-    // this.initWidgets();
+    this.initWidgets();
 
     Sidebar.init();
 
@@ -77,15 +77,15 @@ class App {
     this.forms = {
       login: new LoginForm(document.querySelector("#login-form")),
       register: new RegisterForm(document.querySelector("#register-form")),
-      createAccount: new CreateAccountForm(
-        document.querySelector("#new-account-form")
-      ),
-      createIncome: new CreateTransactionForm(
-        document.querySelector("#new-income-form")
-      ),
-      createExpense: new CreateTransactionForm(
-        document.querySelector("#new-expense-form")
-      ),
+      // createAccount: new CreateAccountForm(
+      //   document.querySelector("#new-account-form")
+      // ),
+      // createIncome: new CreateTransactionForm(
+      //   document.querySelector("#new-income-form")
+      // ),
+      // createExpense: new CreateTransactionForm(
+      //   document.querySelector("#new-expense-form")
+      // ),
     };
   }
 
