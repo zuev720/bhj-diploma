@@ -44,12 +44,13 @@ class User {
    * */
   static login( data, callback) {
     createRequest({
-      url: this.URL + '/login',
+      url: '/user' + '/login',
       method: 'POST',
       responseType: 'json',
       data,
       callback: (err, response) => {
         if (response && response.user) {
+          console.log(response.user)
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -65,7 +66,7 @@ class User {
    * */
   static register( data, callback) {
     createRequest({
-      url: User.URL + '/register',
+      url: '/user' + '/register',
       method: 'POST',
       responseType: 'json',
       data,

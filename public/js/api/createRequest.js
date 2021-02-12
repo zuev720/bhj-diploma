@@ -13,6 +13,7 @@ const createRequest = (options = {}) => {
         } = options,
         xhr = new XMLHttpRequest;
     xhr.withCredentials = true;
+    // xhr.responseType = 'json';
     const formData = new FormData();
     if (options.method === 'GET') {
         options.url += '?';
@@ -24,10 +25,13 @@ const createRequest = (options = {}) => {
             formData.append(key, value);
         }
     }
+
     xhr.open(options.method, options.url);
     xhr.send(formData);
 
     xhr.addEventListener('readystatechange', (e) => {
-        // console.log(e);
+        if (xhr.status === 200 && xhr.readyState === 4) {
+            console.log(JSON.parse(xhr.response));
+        }
     });
 };
