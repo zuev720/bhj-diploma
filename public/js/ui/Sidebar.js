@@ -43,5 +43,11 @@ class Sidebar {
       e.preventDefault();
       App.getModal('login').open();
     });
+
+    const logout = document.querySelector('.menu-item_logout');
+    logout.addEventListener('click', (e) => {
+      e.preventDefault();
+      User.logout();
+    });
   }
 }

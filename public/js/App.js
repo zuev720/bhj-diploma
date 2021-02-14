@@ -77,9 +77,9 @@ class App {
     this.forms = {
       login: new LoginForm(document.querySelector("#login-form")),
       register: new RegisterForm(document.querySelector("#register-form")),
-      // createAccount: new CreateAccountForm(
-      //   document.querySelector("#new-account-form")
-      // ),
+      createAccount: new CreateAccountForm(
+        document.querySelector("#new-account-form")
+      ),
       // createIncome: new CreateTransactionForm(
       //   document.querySelector("#new-income-form")
       // ),

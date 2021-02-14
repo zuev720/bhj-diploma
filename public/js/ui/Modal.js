@@ -41,7 +41,7 @@ class Modal {
      * Закрывает текущее окно (Modal.close())
      * */
     onClose(e) {
-        this.close();
+        this.close(e);
     }
 
     /**

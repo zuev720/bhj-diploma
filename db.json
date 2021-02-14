@@ -11,6 +11,18 @@
       "email": "efrtg@rt",
       "password": "er",
       "id": "39227d9kkkl20lhv1"
+    },
+    {
+      "name": "Vlad",
+      "email": "test@test.ru",
+      "password": "abracadabra",
+      "id": "39227d4t4kl51jf6p"
+    },
+    {
+      "name": "Igor",
+      "email": "mail@mail",
+      "password": "demo",
+      "id": "39227d8iikl53w3ho"
     }
   ],
   "accounts": [
