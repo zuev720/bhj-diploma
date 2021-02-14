@@ -19,14 +19,6 @@ class AsyncForm {
           this.element = element;
           this.registerEvents();
       }
-    // this.element = [... document.querySelectorAll('.modal')]
-    //     .find(modal => modal.style.display === 'block')
-    //     .querySelector('.form');
-    // if (!this.element) {
-    //   throw new Error('Ошибка, нет активных форм!');
-    // } else {
-    //   this.registerEvents();
-    // }
   }
 
   /**

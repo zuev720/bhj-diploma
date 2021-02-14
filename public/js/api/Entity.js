@@ -18,7 +18,16 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
-
+    return createRequest({
+      url: '/user',
+      data: {},
+      responseType: 'json',
+      method: 'POST',
+      callback: (err, response) => {
+        console.log(response);
+        callback(err, response);
+      }
+    });
   }
 
   /**
