@@ -13,7 +13,7 @@ const createRequest = (options = {}) => {
         } = options,
         xhr = new XMLHttpRequest;
     xhr.withCredentials = true;
-    // xhr.responseType = 'json';
+    xhr.responseType = options.responseType || 'json';
     const formData = new FormData();
     if (options.method === 'GET') {
         options.url += '?';
@@ -30,10 +30,9 @@ const createRequest = (options = {}) => {
     xhr.send(formData);
 
     xhr.addEventListener('readystatechange', (e) => {
+        e.preventDefault();
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            let response = JSON.parse(xhr.response);
-            options.callback(null, response);
-            // console.log(JSON.parse(xhr.response).user);
+            options.callback(null, xhr.response);
         } else {
             options.callback(xhr.status, xhr.response);
         }

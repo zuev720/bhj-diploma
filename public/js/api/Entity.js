@@ -9,7 +9,15 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
-
+    return createRequest({
+      url: '/account',
+      method: 'GET',
+      responseType: 'json',
+      data: data,
+      callback: (err, response) => {
+        callback(err, response);
+      }
+    });
   }
 
   /**
@@ -18,13 +26,13 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
+    console.log(callback);
     return createRequest({
-      url: '/user',
-      data: {},
+      url: '/account',
+      data: data,
       responseType: 'json',
       method: 'POST',
       callback: (err, response) => {
-        console.log(response);
         callback(err, response);
       }
     });
