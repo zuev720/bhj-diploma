@@ -64,10 +64,10 @@ class User {
       url: '/user' + '/login',
       method: 'POST',
       responseType: 'json',
-      data: {},
+      data: data,
       callback: (err, response) => {
         if (response && response.user) {
-          this.setCurrent(response.user);
+          User.setCurrent(response.user);
         }
         callback(err, response);
       }
@@ -85,7 +85,7 @@ class User {
       url: '/user' + '/register',
       method: 'POST',
       responseType: 'json',
-      data: {},
+      data: data,
       callback: (err, response) => {
         if (response.success === true) {
           User.setCurrent(response.user);
@@ -104,10 +104,10 @@ class User {
       url: '/user' + '/logout',
       method: 'POST',
       responseType: 'json',
-      data,
+      data: {},
       callback: (err, response) => {
         if (response.success === true) {
-          this.unsetCurrent();
+          User.unsetCurrent();
         }
         callback(err, response);
       }

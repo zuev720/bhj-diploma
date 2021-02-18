@@ -20,21 +20,23 @@ const createRequest = (options = {}) => {
         for (const [key, value] of Object.entries(options.data)) {
             options.url += `${key}=${value}&`;
         }
-    } else if (options.method === 'POST') {
+    } else {
         for (const [key, value] of Object.entries(options.data)) {
             formData.append(key, value);
         }
     }
 
-    xhr.open(options.method, options.url);
-    xhr.send(formData);
+    try {
+        xhr.open(options.method, options.url);
+        xhr.send(formData);
+    } catch (err) {
+        callback(err);
+    }
 
     xhr.addEventListener('readystatechange', (e) => {
         e.preventDefault();
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            options.callback(null, xhr.response);
-        } else {
-            options.callback(xhr.status, xhr.response);
+            callback(null, xhr.response);
         }
     });
 };

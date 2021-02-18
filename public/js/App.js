@@ -80,12 +80,12 @@ class App {
       createAccount: new CreateAccountForm(
         document.querySelector("#new-account-form")
       ),
-      // createIncome: new CreateTransactionForm(
-      //   document.querySelector("#new-income-form")
-      // ),
-      // createExpense: new CreateTransactionForm(
-      //   document.querySelector("#new-expense-form")
-      // ),
+      createIncome: new CreateTransactionForm(
+        document.querySelector("#new-income-form")
+      ),
+      createExpense: new CreateTransactionForm(
+        document.querySelector("#new-expense-form")
+      ),
     };
   }
 
