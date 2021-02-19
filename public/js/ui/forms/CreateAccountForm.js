@@ -13,8 +13,8 @@ class CreateAccountForm extends AsyncForm {
       if (response.success === true) {
         const activeForm = new Modal(this.element.closest('.modal'));
         activeForm.close();
-        this.element.reset();
         App.update();
+        this.element.reset();
       }
     });
   }

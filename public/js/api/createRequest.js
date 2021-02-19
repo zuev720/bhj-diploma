@@ -9,7 +9,7 @@ const createRequest = (options = {}) => {
             callback = f,
             responseType,
             async = true,
-            data = {}
+            data: {}
         } = options,
         xhr = new XMLHttpRequest;
     xhr.withCredentials = true;
@@ -20,23 +20,33 @@ const createRequest = (options = {}) => {
         for (const [key, value] of Object.entries(options.data)) {
             options.url += `${key}=${value}&`;
         }
+        try {
+            xhr.open(options.method, options.url.slice(1, -1));
+            xhr.send();
+        } catch (err) {
+            callback(err);
+        }
     } else {
         for (const [key, value] of Object.entries(options.data)) {
             formData.append(key, value);
         }
-    }
+        try {
+            xhr.open(options.method, options.url);
+            xhr.send(formData);
+        } catch (err) {
+            callback(err);
+        }
 
-    try {
-        xhr.open(options.method, options.url);
-        xhr.send(formData);
-    } catch (err) {
-        callback(err);
     }
 
     xhr.addEventListener('readystatechange', (e) => {
         e.preventDefault();
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            callback(null, xhr.response);
+            if (xhr.response.success === true) {
+                callback(null, xhr.response);
+            } else {
+                callback(xhr.err);
+            }
         }
     });
 };

@@ -121,7 +121,7 @@ class TransactionsPage {
      * Устанавливает заголовок в элемент .content-title
      * */
     renderTitle(name) {
-        document.querySelector('.content-title').textContent = name;
+        this.element.querySelector('.content-title').textContent = name;
     }
 
     /**
@@ -171,7 +171,7 @@ class TransactionsPage {
      * */
     renderTransactions(data) {
         data.forEach(element => {
-            document.querySelector('.content').insertAdjacentHTML("afterbegin", this.getTransactionHTML(element));
+            this.element.querySelector('.content').insertAdjacentHTML("afterbegin", this.getTransactionHTML(element));
         });
     }
 }
