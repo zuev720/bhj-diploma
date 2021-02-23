@@ -5,24 +5,6 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
-    },
-    {
-      "name": "sdf",
-      "email": "efrtg@rt",
-      "password": "er",
-      "id": "39227d9kkkl20lhv1"
-    },
-    {
-      "name": "Vlad",
-      "email": "test@test.ru",
-      "password": "abracadabra",
-      "id": "39227d4t4kl51jf6p"
-    },
-    {
-      "name": "Igor",
-      "email": "mail@mail",
-      "password": "demo",
-      "id": "39227d8iikl53w3ho"
     }
   ],
   "accounts": [
@@ -40,21 +22,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "7oi",
-      "user_id": "39227d8iikl53w3ho",
-      "id": "39227dan0klc4g3rt"
-    },
-    {
-      "name": "ert",
-      "user_id": "39227d8iikl53w3ho",
-      "id": "39227dauzklc4sasb"
-    },
-    {
-      "name": "wetr",
-      "user_id": "39227d8iikl53w3ho",
-      "id": "39227db81klc55mzq"
     }
   ],
   "transactions": [
@@ -82,6 +49,15 @@
       "id": "3",
       "name": "Копилка",
       "sum": 1500,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "2",
+      "created_at": "2019-09-26 16:23:02",
+      "id": "4",
+      "name": "Молочные продукты",
+      "sum": 100,
       "type": "income",
       "user_id": "1"
     },
@@ -123,6 +99,24 @@
     },
     {
       "account_id": "3",
+      "created_at": "2017-10-15 13:27:02",
+      "id": "9",
+      "name": "На банду",
+      "sum": 15000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2017-09-17 13:27:02",
+      "id": "10",
+      "name": "На стволы",
+      "sum": 6000,
+      "type": "expense",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
       "created_at": "2017-12-27 13:27:02",
       "id": "11",
       "name": "Прибыль с банка",
@@ -136,6 +130,15 @@
       "id": "12",
       "name": "Прибыль с магазина",
       "sum": 300000,
+      "type": "income",
+      "user_id": "1"
+    },
+    {
+      "account_id": "3",
+      "created_at": "2018-01-15 13:27:02",
+      "id": "13",
+      "name": "Подарок сизого",
+      "sum": 20000,
       "type": "income",
       "user_id": "1"
     },
@@ -158,68 +161,12 @@
       "user_id": "1"
     },
     {
-      "id": "39227dba6klc5ac7y",
-      "name": "wert",
-      "sum": 122,
-      "account_id": "39227dan0klc4g3rt",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:23:05.565Z"
-    },
-    {
-      "id": "39227dbaiklc5dz61",
-      "name": "wer",
-      "sum": 1222,
-      "account_id": "39227dan0klc4g3rt",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:25:55.272Z"
-    },
-    {
-      "id": "39227dbdaklc5j0vl",
-      "name": "tyiyui",
+      "id": "39227dipbkli2g8ec",
+      "name": "Бытовая химия",
       "sum": 1000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:29:50.768Z"
-    },
-    {
-      "id": "39227dbefklc5j6uj",
-      "name": "tyiyui",
-      "sum": 1000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:29:58.506Z"
-    },
-    {
-      "id": "39227dbfaklc5l159",
-      "name": "4578",
-      "sum": 1000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:31:24.428Z"
-    },
-    {
-      "id": "39227dbfvklc5lwmz",
-      "name": "fgh",
-      "sum": 1000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:32:05.242Z"
-    },
-    {
-      "id": "39227dbi6klc5p2cw",
-      "name": "568",
-      "sum": 1000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:34:32.623Z"
-    },
-    {
-      "id": "39227dbj8klc5pl9s",
-      "name": "edry",
-      "sum": 2000,
-      "account_id": "39227dauzklc4sasb",
-      "user_id": "39227d8iikl53w3ho",
-      "created_at": "2021-02-19T10:34:57.135Z"
+      "account_id": "2",
+      "user_id": "1",
+      "created_at": "2021-02-23T13:50:18.755Z"
     }
   ]
 }

@@ -23,7 +23,7 @@ class TransactionsPage {
      * Вызывает метод render для отрисовки страницы
      * */
     update() {
-        this.render();
+        this.render(this.lastOptions);
     }
 
     /**
@@ -54,13 +54,16 @@ class TransactionsPage {
      * для обновления приложения
      * */
     removeAccount() {
+        if (!this.lastOptions) {
+            return;
+        }
         const agree = confirm('Вы действительно хотите удалить счёт?');
         if (agree) {
             let activeAccountId = [...document.querySelectorAll('.account')].find(account => account.classList.contains('active')).dataset.id;
             Account.remove(activeAccountId, (err, response) => {
                 if (response.success === true) {
                     this.clear();
-                    App.update();
+                    App.updateWidgets();
                 }
             });
         } else {
@@ -78,10 +81,11 @@ class TransactionsPage {
         if (agree) {
             Transaction.remove(id, (err, response) => {
                 if (response.success === true) {
-                    this.clear();
-                    App.update();
+                    App.updateWidgets();
                 }
             });
+        } else {
+            return;
         }
     }
 
@@ -97,11 +101,13 @@ class TransactionsPage {
         }
         this.lastOptions = options;
         Account.get(options.account_id, (err, response) => {
-            this.renderTitle(response.data.name);
+            if (response.success === true) {
+                this.renderTitle(response.data[options.account_id - 1].name);
+            }
         });
         Transaction.list(options, (err, response) => {
             if (response.success === true) {
-                this.renderTransactions(response.data)
+                this.renderTransactions(response.data);
             }
         });
     }
@@ -170,6 +176,7 @@ class TransactionsPage {
      * используя getTransactionHTML
      * */
     renderTransactions(data) {
+        this.element.querySelector('.content').innerHTML = '';
         data.forEach(element => {
             this.element.querySelector('.content').insertAdjacentHTML("afterbegin", this.getTransactionHTML(element));
         });

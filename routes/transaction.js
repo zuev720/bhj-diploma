@@ -47,7 +47,7 @@ router.put("/", upload.none(), function(request, response) {
             //добавление существующей транзакцию к списку и записывание в БД
             transactions.push({
                 id: uniqid(),
-                type,
+                type: type,
                 name,
                 sum: +sum,
                 account_id,
