@@ -5,33 +5,34 @@
 const createRequest = (options = {}) => {
     const f = function () {},
         {
-            method = 'GET',
+            url = '',
+            method = '',
             callback = f,
             responseType,
             async = true,
-            data: {}
+            data = {}
         } = options,
         xhr = new XMLHttpRequest;
     xhr.withCredentials = true;
-    xhr.responseType = options.responseType || 'json';
+    xhr.responseType = responseType || 'json';
     const formData = new FormData();
-    if (options.method === 'GET') {
+    if (method === 'GET') {
         options.url += '?';
-        for (const [key, value] of Object.entries(options.data)) {
-            options.url += `${key}=${value}&`;
+        for (let element in data) {
+            options.url += `${element}=${data[element]}&`
         }
         try {
-            xhr.open(options.method, options.url.slice(1, -1));
+            xhr.open(method, options.url.slice(1, -1));
             xhr.send();
         } catch (err) {
             callback(err);
         }
     } else {
-        for (const [key, value] of Object.entries(options.data)) {
-            formData.append(key, value);
+        for (let element in data) {
+            formData.append(element, data[element])
         }
         try {
-            xhr.open(options.method, options.url);
+            xhr.open(method, options.url);
             xhr.send(formData);
         } catch (err) {
             callback(err);

@@ -100,9 +100,9 @@ class TransactionsPage {
             return;
         }
         this.lastOptions = options;
-        Account.get(options.account_id, (err, response) => {
+        Account.get('', (err, response) => {
             if (response.success === true) {
-                this.renderTitle(response.data[options.account_id - 1].name);
+                this.renderTitle(response.data.name);
             }
         });
         Transaction.list(options, (err, response) => {
