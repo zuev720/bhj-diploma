@@ -40,11 +40,12 @@ class AsyncForm {
    * }
    * */
   getData() {
-    let objectRequest = {};
-    [... this.element.querySelectorAll('.form-control')].forEach(input => {
-      objectRequest[input.name] = input.value;
-    });
-    return objectRequest;
+      const formData = new FormData(this.element);
+      const data = {};
+      for (let [name, value] of formData) {
+          data[name] = value;
+      }
+      return data;
   }
 
   onSubmit(options){

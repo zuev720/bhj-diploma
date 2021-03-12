@@ -100,7 +100,7 @@ class TransactionsPage {
             return;
         }
         this.lastOptions = options;
-        Account.get('', (err, response) => {
+        Account.get(options.account_id, (err, response) => {
             if (response.success === true) {
                 this.renderTitle(response.data.name);
             }
