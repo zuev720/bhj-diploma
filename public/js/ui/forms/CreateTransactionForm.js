@@ -42,7 +42,7 @@ class CreateTransactionForm extends AsyncForm {
         const activeForm = new Modal(this.element.closest('.modal'));
         activeForm.close();
         this.element.reset();
-        App.updateWidgets();
+        App.update();
       }
     });
   }

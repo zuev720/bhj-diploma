@@ -60,10 +60,10 @@ class TransactionsPage {
         const agree = confirm('Вы действительно хотите удалить счёт?');
         if (agree) {
             let activeAccountId = [...document.querySelectorAll('.account')].find(account => account.classList.contains('active')).dataset.id;
-            Account.remove(activeAccountId, (err, response) => {
+            Account.remove({id: this.lastOptions.account_id}, (err, response) => {
                 if (response.success === true) {
                     this.clear();
-                    App.updateWidgets();
+                    App.update();
                 }
             });
         } else {
@@ -79,9 +79,9 @@ class TransactionsPage {
     removeTransaction(id) {
         const agree = confirm('Вы действительно хотите удалить транзакцию?');
         if (agree) {
-            Transaction.remove(id, (err, response) => {
+            Transaction.remove({id}, (err, response) => {
                 if (response.success === true) {
-                    App.updateWidgets();
+                    App.update();
                 }
             });
         } else {
@@ -100,12 +100,12 @@ class TransactionsPage {
             return;
         }
         this.lastOptions = options;
-        Account.get(options.account_id, (err, response) => {
+        Account.get(this.lastOptions.account_id, (err, response) => {
             if (response.success === true) {
                 this.renderTitle(response.data.name);
             }
         });
-        Transaction.list(options, (err, response) => {
+        Transaction.list(this.lastOptions, (err, response) => {
             if (response.success === true) {
                 this.renderTransactions(response.data);
             }
